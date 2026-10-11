@@ -34,11 +34,14 @@ jobs:
     steps:
       - name: Configure Pages
         uses: actions/configure-pages@v5
-
+      - name: Prepare website files
+        run: |
+          mkdir -p public
+          cp index.html public/
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: public
 
       - name: Deploy website
         id: deployment
