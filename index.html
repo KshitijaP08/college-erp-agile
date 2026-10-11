@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>College ERP - Assignment Manager</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 850px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #f2f5fa;
+      color: #243247;
+    }
+    header, .panel {
+      background: white;
+      padding: 22px;
+      border-radius: 12px;
+      margin-bottom: 18px;
+    }
+    h1 { color: #174ea6; }
+    input, button {
+      padding: 11px;
+      margin: 5px 0;
+      border-radius: 6px;
+      border: 1px solid #ccd3df;
+    }
+    input { width: 65%; }
+    button {
+      background: #174ea6;
+      color: white;
+      cursor: pointer;
+    }
+    li { padding: 10px; margin: 8px 0; background: #eef3fc; }
+    .done { text-decoration: line-through; color: #687385; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>College ERP</h1>
+    <p>Student Assignment Management System</p>
+    <p>Manage assignments and track your progress.</p>
+  </header>
+
+  <section class="panel">
+    <h2>Add an Assignment</h2>
+    <input id="assignment" placeholder="Enter assignment name">
+    <button onclick="addAssignment()">Add Assignment</button>
+    <p id="message" role="status"></p>
+  </section>
+
+  <section class="panel">
+    <h2>My Assignments</h2>
+    <ul id="list">
+      <li>Agile Assignment No. 1</li>
+      <li>Management Information Systems</li>
+    </ul>
+  </section>
+
+  <script>
+    function addAssignment() {
+      const input = document.getElementById("assignment");
+      const message = document.getElementById("message");
+      const name = input.value.trim();
+
+      if (!name) {
+        message.textContent = "Please enter an assignment name.";
+        return;
+      }
+
+      const item = document.createElement("li");
+      item.textContent = name;
+      item.title = "Click to mark as completed";
+      item.style.cursor = "pointer";
+      item.onclick = () => item.classList.toggle("done");
+
+      document.getElementById("list").appendChild(item);
+      input.value = "";
+      message.textContent = "Assignment added successfully!";
+    }
+  </script>
+</body>
+</html>
